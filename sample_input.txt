@@ -1,0 +1,15 @@
+import random
+import string
+
+# Generates a 10MB file with skewed frequencies to test compression
+file_size_mb = 10
+characters = string.ascii_lowercase + " " * 5  # Heavily bias towards spaces
+weights = [random.randint(1, 10) for _ in range(26)] + [50] * 5
+
+with open("sample_input.txt", "w") as f:
+    for _ in range(file_size_mb * 1024 * 10):
+        # Write chunks of 100 characters
+        chunk = random.choices(characters, weights=weights, k=100)
+        f.write("".join(chunk))
+
+print("sample_input.txt generated successfully!")

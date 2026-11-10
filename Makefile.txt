@@ -1,0 +1,16 @@
+# Makefile
+
+CC = gcc
+CFLAGS = -Wall -O2
+
+all: compress decompress
+
+compress: compress.c huffman.c
+	$(CC) $(CFLAGS) -o compress compress.c huffman.c
+
+decompress: decompress.c huffman.c
+	$(CC) $(CFLAGS) -o decompress decompress.c huffman.c
+
+clean:
+# Use 'del' instead of 'rm -f' if compiling natively on standard Windows Command Prompt
+	rm -f compress decompress compress.exe decompress.exe *.bin
